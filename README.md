@@ -4,10 +4,10 @@
 This course focuses on **Data Flow & Debugging** in React Native applications, covering state management, data fetching, and debugging techniques.
 
 ## Slide Decks
-- [Introduction](https://levizimmerman.github.io/inholland-react-native-course-2/slides/intro.html) - Course overview and homework review
-- [State Management](https://levizimmerman.github.io/inholland-react-native-course-2/slides/state-management.html) - Understanding different types of state
-- [TanStack Query](https://levizimmerman.github.io/inholland-react-native-course-2/slides/tanstack-query.html) - Data fetching and caching
-- [Dev Tools](https://levizimmerman.github.io/inholland-react-native-course-2/slides/dev-tools.html) - Debugging and development tools
+- [Introduction](./slides/intro.md) - Course overview and homework review
+- [State Management](./slides/state-management.md) - Understanding different types of state
+- [TanStack Query](./slides/tanstack-query.md) - Data fetching and caching
+- [Dev Tools](./slides/dev-tools.md) - Debugging and development tools
 
 ## Topics Covered
 - **State Management** - Different types of state (Server, URL, Form, Component, Global)
