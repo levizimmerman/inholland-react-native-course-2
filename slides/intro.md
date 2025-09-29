@@ -6,14 +6,16 @@ class: invert
 
 # Data Flow & Debugging
 
-- Review homework
-- State management & types of state.
-- Performing network calls using Tanstack Query.
-- Mapping data to views.
-- Debugging using developer tools.
-- ~~Using eslint.~~
-- ~~Advanced Typescript.~~
-
+```diff
++ • Review homework
+• State management & types of state.
+• Performing network calls using Tanstack Query.
+• Mapping data to views.
++• Saving data to user's device.
+• Debugging using developer tools.
+- • Using eslint.
+- • Advanced Typescript.
+```
 ---
 
 # Review Homework
