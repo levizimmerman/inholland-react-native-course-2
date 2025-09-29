@@ -16,6 +16,8 @@ class: invert
     - Auth tokens storage
     - Tracking of actions
 
+![bg right fit](../assets/why-localstorage.png)
+
 ---
 
 # Types of local storage
@@ -141,18 +143,14 @@ class DatabaseService {
 ## Example: Create Tables
 
 ```typescript
-  private async createTables(): Promise<void> {
-    if (!this.db) throw new Error("Database not initialized");
-
-    await this.db.execAsync(`
-      CREATE TABLE IF NOT EXISTS favorites (
-        id INTEGER PRIMARY KEY,
-        name TEXT NOT NULL,
-        image_url TEXT,
-        created_at DATETIME DEFAULT CURRENT_TIMESTAMP
-      );
-    `);
-  }
+await this.db.execAsync(`
+  CREATE TABLE IF NOT EXISTS favorites (
+    id INTEGER PRIMARY KEY,
+    name TEXT NOT NULL,
+    image_url TEXT,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+  );
+`);
 ```
 
 ---
@@ -160,21 +158,48 @@ class DatabaseService {
 ## Example: Add Favorite
 
 ```typescript
-async addFavorite(
-    pokemonId: number,
-    name: string,
-    imageUrl?: string
-  ): Promise<void> {
-    if (!this.db) throw new Error("Database not initialized");
+try {
+  await this.db.runAsync(
+    "INSERT OR REPLACE INTO favorites (id, name, image_url) VALUES (?, ?, ?)",
+    [pokemonId, name, imageUrl || ""]
+  );
+} catch (error) {
+  console.error("Error adding favorite:", error);
+  throw error;
+}
+```
 
-    try {
-      await this.db.runAsync(
-        "INSERT OR REPLACE INTO favorites (id, name, image_url) VALUES (?, ?, ?)",
-        [pokemonId, name, imageUrl || ""]
-      );
-    } catch (error) {
-      console.error("Error adding favorite:", error);
-      throw error;
-    }
-  }
+## Example: Is Favorited?
+
+```typescript
+const result = await this.db.getFirstAsync<{ count: number }>(
+  "SELECT COUNT(*) as count FROM favorites WHERE id = ?",
+  [pokemonId]
+);
+return (result?.count || 0) > 0;
+```
+
+## Example: Remove Favorite
+
+```typescript
+try {
+  await this.db.runAsync("DELETE FROM favorites WHERE id = ?", [pokemonId]);
+} catch (error) {
+  console.error("Error removing favorite:", error);
+  throw error;
+}
+```
+
+## Example: Get all favorites
+
+```typescript
+try {
+  const result = await this.db.getAllAsync<FavoritePokemon>(
+    "SELECT * FROM favorites ORDER BY created_at DESC"
+  );
+  return result;
+} catch (error) {
+  console.error("Error getting favorites:", error);
+  return [];
+}
 ```
