@@ -7,11 +7,13 @@ This course focuses on **Data Flow & Debugging** in React Native applications, c
 - [Introduction](./slides/intro.md) - Course overview and homework review
 - [State Management](./slides/state-management.md) - Understanding different types of state
 - [TanStack Query](./slides/tanstack-query.md) - Data fetching and caching
+- [Local Storage](./slides/local-storage.md) - Saving data to user's device
 - [Dev Tools](./slides/dev-tools.md) - Debugging and development tools
 
 ## Topics Covered
 - **State Management** - Different types of state (Server, URL, Form, Component, Global)
 - **TanStack Query** - Data fetching, caching, and synchronization
+- **Local Storage** - Saving data to user's device
 - **Debugging Tools** - Developer tools, performance monitoring, and network inspection
 - **Pokédex App** - Hands-on project implementing all concepts
 
